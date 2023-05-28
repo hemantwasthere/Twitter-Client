@@ -16,7 +16,8 @@ module.exports = {
         borderColor: '#EEF2F4',
         primaryBlue: '#1C9BF1',
         hoverGray: '#E6E7E9',
-        primaryText: '#0F1419'
+        primaryText: '#0F1419',
+        tweetCardHover: '#F9F9F8'
       }
     },
   },

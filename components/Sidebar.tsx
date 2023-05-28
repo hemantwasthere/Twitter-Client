@@ -73,7 +73,7 @@ const Sidebar: React.FC = () => {
               </p>
             </li>
           ))}
-          <button className="px-4 mt-2 py-3 flex items-center justify-center bg-primaryBlue rounded-full w-full text-white hover:bg-[#1C94E7]">
+          <button className="px-4 mt-6 py-3 flex items-center justify-center bg-primaryBlue rounded-full w-full text-white hover:bg-[#1C94E7]">
             Tweet
           </button>
         </ul>
