@@ -25,7 +25,7 @@ const FeedCard: React.FC = () => {
           et. A eveniet ab, reiciendis accusamus voluptates facere quisquam
           iusto error aperiam tempora ex dolor!
         </p>
-        <div className="flex justify-start gap-24 items-center mt-3">
+        <div className="flex justify-between items-center mt-3 lg:pr-32">
           <BiMessageRounded className="text-[#536471] w-9 h-9 p-2 rounded-full bg-[#] hover:text-primaryBlue hover:bg-[#E8F0F6] transition-all" />
           <FaRetweet className="text-[#536471] w-9 h-9 p-2 rounded-full bg-[#] hover:text-[#01BB7C] hover:bg-[#DEF1EB] transition-all" />
           <AiOutlineHeart className="text-[#536471] w-9 h-9 p-2 rounded-full bg-[#] hover:text-[#F962A8] hover:bg-[#F6E0EA] transition-all" />

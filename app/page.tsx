@@ -1,4 +1,5 @@
 import FeedCard from "@/components/FeedCard";
+import GoogleAuth from "@/components/GoogleAuth";
 import Sidebar from "@/components/Sidebar";
 import { NextPage } from "next";
 
@@ -13,7 +14,10 @@ const Home: NextPage = () => {
         {/* Feed */}
         <FeedCard />
       </div>
-      <div className="col-span-3">{/* Widgets */}</div>
+      <div className="col-span-3">
+        {/* Widgets */}
+        <GoogleAuth />
+      </div>
     </main>
   );
 };
