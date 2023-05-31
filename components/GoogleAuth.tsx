@@ -2,6 +2,7 @@
 
 import { graphqlClient } from "@/clients/api";
 import { verifyUserGoogleTokenQuery } from "@/graphql/query/user";
+import { useCurrentUser } from "@/hooks/user";
 import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import React, { useCallback } from "react";
 import { toast } from "react-hot-toast";
@@ -9,6 +10,7 @@ import { useQueryClient } from "react-query";
 
 const GoogleAuth: React.FC = () => {
   const queryClient = useQueryClient();
+  const { user } = useCurrentUser();
 
   const handleLoginWithGoogle = useCallback(
     async (cred: CredentialResponse) => {
@@ -32,10 +34,14 @@ const GoogleAuth: React.FC = () => {
     [queryClient]
   );
   return (
-    <div className="p-5 w-fit mt-5 mx-auto rounded-md bg-slate-200 flex flex-col justify-center items-center">
-      <h1 className="mb-2 text-xl text-gray-700 ">New to Twitter?</h1>
-      <GoogleLogin onSuccess={handleLoginWithGoogle} />
-    </div>
+    <>
+      {!user && (
+        <div className="p-5 w-fit mt-5 mx-auto rounded-md bg-slate-200 flex flex-col justify-center items-center">
+          <h1 className="mb-2 text-xl text-gray-700 ">New to Twitter?</h1>
+          <GoogleLogin onSuccess={handleLoginWithGoogle} />
+        </div>
+      )}
+    </>
   );
 };
 
