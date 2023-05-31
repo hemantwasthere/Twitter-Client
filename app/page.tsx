@@ -3,6 +3,7 @@
 import FeedCard from "@/components/FeedCard";
 import GoogleAuth from "@/components/GoogleAuth";
 import Sidebar from "@/components/Sidebar";
+import TweetInput from "@/components/TweetInput";
 import { useCurrentUser } from "@/hooks/user";
 import { NextPage } from "next";
 
@@ -13,10 +14,11 @@ const Home: NextPage = () => {
       <aside className="col-span-3 overscroll-y-none">
         <Sidebar />
       </aside>
-      <div className="col-span-6 border-x-[1px] border-borderColor overflow-y-scroll">
+      <div className="col-span-5 border-x-[1px] border-borderColor overflow-y-scroll">
+        <TweetInput />
         <FeedCard />
       </div>
-      <div className="col-span-3">
+      <div className="col-span-4">
         {!user && (
           <div key="googleAuthDiv">
             <GoogleAuth />
