@@ -21,7 +21,7 @@ const Home: NextPage = () => {
       </aside>
 
       <div className="col-span-5 border-x-[1px] border-borderColor overflow-y-scroll">
-        <TweetInput />
+        {user && <TweetInput />}
         {tweets?.map((tweet) =>
           tweet ? <FeedCard key={tweet?.id} data={tweet as Tweet} /> : null
         )}

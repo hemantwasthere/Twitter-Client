@@ -64,6 +64,11 @@ const navLinks = [
 const Sidebar: React.FC = () => {
   const { user } = useCurrentUser();
 
+  const handleLogout = () => {
+    localStorage.removeItem("__twitter_token");
+    window.location.reload();
+  };
+
   return (
     <div className="flex justify-end">
       <div className="w-full max-w-[240px] pl-4 pr-2">
@@ -87,7 +92,10 @@ const Sidebar: React.FC = () => {
           </ul>
 
           {user && (
-            <div className="flex justify-between w-full rounded-full transition-all hover:bg-hoverGray cursor-pointer p-3 items-center ">
+            <div
+              onClick={handleLogout}
+              className="flex justify-between w-full rounded-full transition-all hover:bg-hoverGray cursor-pointer p-3 items-center "
+            >
               <div key="image_profile_div" className="flex items-center gap-3 ">
                 <Image
                   src={user?.profileImageURL!}
