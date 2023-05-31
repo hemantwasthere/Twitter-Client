@@ -1,12 +1,15 @@
 "use client";
 
-import React, { useCallback } from "react";
-import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
-import { toast } from "react-hot-toast";
 import { graphqlClient } from "@/clients/api";
 import { verifyUserGoogleTokenQuery } from "@/graphql/query/user";
+import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
+import React, { useCallback } from "react";
+import { toast } from "react-hot-toast";
+import { useQueryClient } from "react-query";
 
 const GoogleAuth: React.FC = () => {
+  const queryClient = useQueryClient();
+
   const handleLoginWithGoogle = useCallback(
     async (cred: CredentialResponse) => {
       const googleToken = cred.credential;
@@ -23,8 +26,10 @@ const GoogleAuth: React.FC = () => {
 
       if (verifyGoogleToken)
         localStorage.setItem("__twitter_token", verifyGoogleToken);
+
+      await queryClient.invalidateQueries(["current-user"]);
     },
-    []
+    [queryClient]
   );
   return (
     <div className="p-5 w-fit mt-5 mx-auto rounded-md bg-slate-200 flex flex-col justify-center items-center">
