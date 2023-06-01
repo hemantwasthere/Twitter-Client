@@ -25,7 +25,15 @@ const Home: NextPage = () => {
         </div>
       )}
       {tweets?.map((tweet) =>
-        tweet ? <FeedCard key={tweet?.id} data={tweet as Tweet} /> : null
+        tweet ? (
+          <FeedCard
+            key={tweet?.id}
+            content={tweet?.content}
+            firstName={tweet.author?.firstName!}
+            lastName={tweet.author?.lastName!}
+            profileImageURL={tweet?.author?.profileImageURL!}
+          />
+        ) : null
       )}
     </>
     //   </div>

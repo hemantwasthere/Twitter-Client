@@ -2,67 +2,76 @@
 
 import { useCurrentUser } from "@/hooks/user";
 import Image from "next/image";
-import React from "react";
+import React, { useMemo } from "react";
 import { AiOutlineBell, AiOutlineHome } from "react-icons/ai";
 import { BiHash } from "react-icons/bi";
 import { BsBookmark, BsThreeDots, BsTwitter } from "react-icons/bs";
 import { CgList, CgProfile } from "react-icons/cg";
 import { FiMail } from "react-icons/fi";
 
-const navLinks = [
-  {
-    name: "Home",
-    icon: <AiOutlineHome className="h-6 w-6" />,
-    path: "/",
-  },
-  {
-    name: "Explore",
-    icon: <BiHash className="h-6 w-6" />,
-    path: "/",
-  },
-  {
-    name: "Notifications",
-    icon: <AiOutlineBell className="h-6 w-6" />,
-    path: "/",
-  },
-  {
-    name: "Messages",
-
-    icon: <FiMail className="h-6 w-6" />,
-
-    path: "/",
-  },
-  {
-    name: "Lists",
-    icon: <CgList className="h-6 w-6" />,
-    path: "/",
-  },
-  {
-    name: "Bookmarks",
-    icon: <BsBookmark className="h-6 w-6" />,
-    path: "/",
-  },
-  {
-    name: "Twitter Blue",
-
-    icon: <BsTwitter className="h-6 w-6" />,
-
-    path: "/",
-  },
-  {
-    name: "Profile",
-    icon: <CgProfile className="h-6 w-6" />,
-    path: "/",
-  },
-  {
-    name: "More",
-    icon: <BsThreeDots className="h-6 w-6" />,
-    path: "/",
-  },
-];
+interface navLinksButton {
+  name: string;
+  icon: React.ReactNode;
+  path: string;
+}
 
 const Sidebar: React.FC = () => {
   const { user } = useCurrentUser();
+
+  const navLinks: navLinksButton[] = useMemo(
+    () => [
+      {
+        name: "Home",
+        icon: <AiOutlineHome className="h-6 w-6" />,
+        path: "/",
+      },
+      {
+        name: "Explore",
+        icon: <BiHash className="h-6 w-6" />,
+        path: "/",
+      },
+      {
+        name: "Notifications",
+        icon: <AiOutlineBell className="h-6 w-6" />,
+        path: "/",
+      },
+      {
+        name: "Messages",
+
+        icon: <FiMail className="h-6 w-6" />,
+
+        path: "/",
+      },
+      {
+        name: "Lists",
+        icon: <CgList className="h-6 w-6" />,
+        path: "/",
+      },
+      {
+        name: "Bookmarks",
+        icon: <BsBookmark className="h-6 w-6" />,
+        path: "/",
+      },
+      {
+        name: "Twitter Blue",
+
+        icon: <BsTwitter className="h-6 w-6" />,
+
+        path: "/",
+      },
+      {
+        name: "Profile",
+        icon: <CgProfile className="h-6 w-6" />,
+        path: `/${user?.id}`,
+      },
+      {
+        name: "More",
+        icon: <BsThreeDots className="h-6 w-6" />,
+        path: "/",
+      },
+    ],
+    [user?.id]
+  );
 
   const handleLogout = () => {
     localStorage.removeItem("__twitter_token");
@@ -85,10 +94,12 @@ const Sidebar: React.FC = () => {
                 key={i}
                 className="group xl:w-full xl:mx-0 cursor-pointer mt-2"
               >
-                <p className="font-normal w-fit text-lg text-primaryText flex items-center py-2 px-3 transition-all duration-200 group-hover:bg-hoverGray rounded-full">
-                  {link.icon}
-                  <span className="mx-4 hidden xl:inline ">{link.name}</span>
-                </p>
+                <a href={link.path}>
+                  <p className="font-normal w-fit text-lg text-primaryText flex items-center py-2 px-3 transition-all duration-200 group-hover:bg-hoverGray rounded-full">
+                    {link.icon}
+                    <span className="mx-4 hidden xl:inline ">{link.name}</span>
+                  </p>
+                </a>
               </li>
             ))}
             <button className="xl:px-4 xl:w-full mt-4 xl:mt-6 p-3 xl:py-3 flex items-center justify-center bg-primaryBlue rounded-full text-white hover:bg-[#1C94E7]">
