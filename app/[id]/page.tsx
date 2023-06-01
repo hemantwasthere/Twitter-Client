@@ -1,14 +1,13 @@
 "use client";
 
 import FeedCard from "@/components/FeedCard";
-import { useCurrentUser } from "@/hooks/user";
-import { NextPage } from "next";
+import { useGetUserById } from "@/hooks/user";
 import Image from "next/image";
 import React from "react";
 import { BsArrowLeftShort } from "react-icons/bs";
 
-const UserProfilePage: NextPage = () => {
-  const { user } = useCurrentUser();
+const UserProfilePage = ({ params }: any) => {
+  const { user } = useGetUserById(params.id);
   return (
     <nav>
       <div className="">

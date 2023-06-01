@@ -10,6 +10,7 @@ interface FeedCardProps {
   firstName: string;
   lastName: string;
   content?: string;
+  userId?: string;
 }
 
 const FeedCard: React.FC<FeedCardProps> = ({
@@ -17,24 +18,29 @@ const FeedCard: React.FC<FeedCardProps> = ({
   firstName,
   lastName,
   content,
+  userId,
 }) => {
   return (
     <div className="grid grid-cols-12 border-b cursor-pointer transition-all border-b-borderColor  hover:bg-tweetCardHover p-4 ">
       <div className="col-span-1">
-        {profileImageURL && (
-          <Image
-            src={profileImageURL!}
-            alt="user-image"
-            height={48}
-            width={48}
-            className="rounded-full"
-          />
-        )}
+        <a href={`/${userId}`}>
+          {profileImageURL && (
+            <Image
+              src={profileImageURL!}
+              alt="user-image"
+              height={48}
+              width={48}
+              className="rounded-full"
+            />
+          )}
+        </a>
       </div>
       <div className="col-span-11 px-3">
-        <h5>
-          {firstName} {lastName}
-        </h5>
+        <a href={`/${userId}`}>
+          <p>
+            {firstName} {lastName}
+          </p>
+        </a>
         <p>{content}</p>
         <div className="flex justify-between items-center mt-3 lg:pr-32">
           <BiMessageRounded className="text-[#536471] w-9 h-9 p-2 rounded-full bg-[#] hover:text-primaryBlue hover:bg-[#E8F0F6] transition-all" />

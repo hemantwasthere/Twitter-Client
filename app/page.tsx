@@ -12,12 +12,6 @@ const Home: NextPage = () => {
   const { tweets = [] } = useGetAllTweets();
 
   return (
-    // <main className="grid grid-cols-12 h-screen w-screen ">
-    //   <aside className="col-span-3 overscroll-y-none">
-    //     <Sidebar />
-    //   </aside>
-
-    //   <div className="col-span-5 border-x-[1px] border-borderColor overflow-y-scroll">
     <>
       {user && (
         <div className="hidden xl:inline">
@@ -32,20 +26,11 @@ const Home: NextPage = () => {
             firstName={tweet.author?.firstName!}
             lastName={tweet.author?.lastName!}
             profileImageURL={tweet?.author?.profileImageURL!}
+            userId={tweet?.author?.id!}
           />
         ) : null
       )}
     </>
-    //   </div>
-
-    //   <div className="col-span-4">
-    //     {!user && (
-    //       <div key="googleAuthDiv">
-    //         <GoogleAuth />
-    //       </div>
-    //     )}
-    //   </div>
-    // </main>
   );
 };
 
